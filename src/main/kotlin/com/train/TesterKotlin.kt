@@ -4,17 +4,27 @@ import java.util.*
 
 fun main() {
     val scanner = Scanner(System.`in`)
-    print("Please enter number of tickets: ")
-    var tickets = scanner.nextInt()
-    print("How many round-trip tickets? ")
-    var roundtrip = scanner.nextInt()
-    val tk = Ticket(tickets, roundtrip)
-    tk.print()
+    while (true) {
+        print("Please enter number of tickets: ")
+        var tickets = scanner.nextInt()
+        if (tickets > 0) {
+            print("How many round-trip tickets? ")
+            var roundtrip = scanner.nextInt()
+            val tk = Tickets(tickets, roundtrip)
+            tk.print()
+        } else if (tickets == 0) {
+            continue
+        } else if (tickets == -1) {
+            break
+        }
+    }
 }
 
-class Ticket(var tickets: Int, var roundtrip: Int) {
+
+class Tickets(var tickets: Int, var roundtrip: Int) {
     fun print() {
         println("Total tickets: $tickets\n" + "Round-trip: $roundtrip\n" +
-                "Total: " + (tickets*1000 + roundtrip*800) )
+                "Total: ${total()}\n")
     }
+    fun total() = tickets*1000 + roundtrip*800
 }
